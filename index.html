@@ -3,23 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Skywind Fox 的游戏小窝</title>
+    <title>Skywind Fox 的游戏空间</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #FF6B6B;
-            --secondary: #4ECDC4;
-            --accent: #FFD166;
-            --background: #F7F9FC;
-            --card: #FFFFFF;
-            --text: #2E2E2E;
-            --light-gray: #E8E8E8;
-            --success: #06D6A0;
-            --game-card: #FFE9EC;
-            --project-card: #E0F7FA;
-            --tag: #FF9E6D;
+            --primary: #6c5ce7;
+            --primary-light: #a29bfe;
+            --secondary: #00cec9;
+            --dark: #2d3436;
+            --light: #f7f9fa;
+            --accent: #ff7675;
+            --card-bg: rgba(255, 255, 255, 0.85);
             --transition: all 0.3s ease;
+            --shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            --border-radius: 16px;
         }
 
         * {
@@ -30,80 +28,83 @@
 
         body {
             font-family: 'Nunito', sans-serif;
-            background-color: var(--background);
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(255, 214, 102, 0.1) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(78, 205, 196, 0.1) 0%, transparent 20%);
-            color: var(--text);
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: var(--dark);
             line-height: 1.6;
-            overflow-x: hidden;
+            min-height: 100vh;
+            padding: 20px;
             position: relative;
+            overflow-x: hidden;
         }
 
-        /* 装饰元素 */
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Decorative elements */
         .decoration {
             position: absolute;
             z-index: -1;
+            opacity: 0.08;
         }
 
         .decoration.fox {
-            top: 100px;
-            right: 5%;
-            width: 150px;
-            height: 150px;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23FFD166" d="M50,15 C60,5 80,10 85,25 C90,40 85,55 75,60 C85,70 90,85 80,95 C70,85 50,90 40,80 C30,90 10,85 15,70 C5,60 10,45 20,40 C10,35 5,20 15,10 C25,20 40,25 50,15 Z"/></svg>');
-            opacity: 0.15;
-            animation: float 6s ease-in-out infinite;
+            top: 10%;
+            left: 5%;
+            font-size: 15rem;
+            color: var(--light);
         }
 
         .decoration.gamepad {
-            bottom: 20%;
-            left: 5%;
-            width: 100px;
-            height: 100px;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="%234ECDC4" x="20" y="30" width="60" height="40" rx="10"/><circle fill="%232E2E2E" cx="35" cy="40" r="5"/><circle fill="%232E2E2E" cx="65" cy="40" r="5"/><rect fill="%232E2E2E" x="45" cy="55" width="10" height="15"/></svg>');
-            opacity: 0.15;
-            animation: float 8s ease-in-out infinite 1s;
+            bottom: 15%;
+            right: 7%;
+            font-size: 12rem;
+            color: var(--light);
+            transform: rotate(20deg);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         header {
-            background: linear-gradient(135deg, var(--primary), #FF8E8E);
-            color: white;
-            padding: 1.5rem 2rem;
-            position: relative;
-            overflow: hidden;
-            border-radius: 0 0 30px 30px;
-            box-shadow: 0 5px 20px rgba(255, 107, 107, 0.3);
-            margin-bottom: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: var(--shadow);
         }
 
         .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: space-between;
-            position: relative;
-            flex-wrap: wrap;
+            gap: 20px;
         }
 
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         .logo {
-            width: 80px;
-            height: 80px;
-            background: white;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             overflow: hidden;
-            border: 3px solid var(--accent);
+            border: 4px solid var(--primary);
+            box-shadow: var(--shadow);
+            background: white;
         }
 
         .logo img {
@@ -112,192 +113,83 @@
             object-fit: cover;
         }
 
+        .title-container {
+            text-align: center;
+        }
+
         .title-container h1 {
             font-family: 'Quicksand', sans-serif;
-            font-weight: 700;
             font-size: 2.2rem;
-            letter-spacing: 1px;
-            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            margin-bottom: 0.3rem;
+            margin-bottom: 10px;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
 
         .title-container p {
-            font-weight: 600;
             font-size: 1.1rem;
-            opacity: 0.95;
-            letter-spacing: 0.5px;
+            color: var(--light);
+            max-width: 600px;
         }
 
         .intro-banner {
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            padding: 1rem 1.5rem;
-            margin-top: 1rem;
-            width: 100%;
-            text-align: center;
+            background: rgba(108, 92, 231, 0.85);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .section {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
             backdrop-filter: blur(5px);
             border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
-        .intro-banner p {
-            font-size: 1.2rem;
-            font-weight: 500;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 2rem;
-        }
-
-        .section {
-            background: var(--card);
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            padding: 2rem;
-            margin-bottom: 2.5rem;
-            transition: var(--transition);
-            overflow: hidden;
-            position: relative;
-            border: 1px solid var(--light-gray);
-        }
-
         .section-title {
+            text-align: center;
             font-family: 'Quicksand', sans-serif;
-            font-weight: 700;
-            font-size: 1.8rem;
             color: var(--primary);
-            margin-bottom: 1.5rem;
+            margin-bottom: 25px;
+            font-size: 2rem;
             position: relative;
-            display: inline-block;
-            padding-left: 1rem;
+            padding-bottom: 10px;
         }
 
-        .section-title::before {
-            content: "";
+        .section-title::after {
+            content: '';
             position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 6px;
-            height: 80%;
-            background: var(--primary);
-            border-radius: 3px;
-        }
-
-        .section-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            transition: var(--transition);
-            position: relative;
-            border: 2px solid var(--light-gray);
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            border-color: var(--primary);
-        }
-
-        .card.games {
-            background: var(--game-card);
-            border-top: 5px solid var(--primary);
-        }
-
-        .card.projects {
-            background: var(--project-card);
-            border-top: 5px solid var(--secondary);
-        }
-
-        .card-header {
-            padding: 1.2rem 1.2rem 0.8rem;
-            position: relative;
-        }
-
-        .card-icon {
-            position: absolute;
-            top: -20px;
-            right: 15px;
-            width: 40px;
-            height: 40px;
-            background: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-            z-index: 2;
-            border: 2px solid var(--accent);
-        }
-
-        .card-icon i {
-            font-size: 1.2rem;
-            color: var(--primary);
-        }
-
-        .card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 0.5rem;
-            color: var(--text);
-            font-family: 'Quicksand', sans-serif;
-        }
-
-        .card-content {
-            padding: 0 1.2rem 1.2rem;
-            flex-grow: 1;
-        }
-
-        .card p {
-            color: var(--text);
-            margin-bottom: 1rem;
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        .card-footer {
-            padding: 0.8rem 1.2rem;
-            background: rgba(255, 255, 255, 0.5);
-            border-top: 1px solid var(--light-gray);
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-        }
-
-        .tag {
-            display: inline-block;
-            background: var(--tag);
-            color: white;
-            font-size: 0.8rem;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-weight: 600;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            border-radius: 2px;
         }
 
         .about-section {
             display: flex;
             flex-direction: column;
             align-items: center;
-            text-align: center;
+            gap: 25px;
         }
 
         .avatar {
             width: 150px;
             height: 150px;
             border-radius: 50%;
-            border: 5px solid var(--accent);
             overflow: hidden;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            border: 5px solid var(--primary-light);
+            box-shadow: var(--shadow);
         }
 
         .avatar img {
@@ -307,21 +199,55 @@
         }
 
         .about-content {
+            text-align: center;
             max-width: 800px;
         }
 
         .about-content p {
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
+            margin-bottom: 20px;
             font-size: 1.1rem;
+        }
+
+        .quote {
+            font-style: italic;
+            padding: 15px;
+            margin: 20px 0;
+            background: rgba(108, 92, 231, 0.1);
+            border-left: 4px solid var(--primary);
+            border-radius: 0 8px 8px 0;
+        }
+
+        .hobby-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .hobby {
+            background: var(--primary-light);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .hobby:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 1rem;
-            margin-top: 1.5rem;
             flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 25px;
         }
 
         .social-links a {
@@ -330,144 +256,209 @@
             justify-content: center;
             width: 50px;
             height: 50px;
-            background: white;
-            color: var(--primary);
             border-radius: 50%;
-            font-size: 1.4rem;
+            background: var(--primary);
+            color: white;
+            font-size: 1.5rem;
             transition: var(--transition);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            border: 2px solid var(--accent);
+            text-decoration: none;
         }
 
         .social-links a:hover {
             transform: translateY(-5px);
+            background: var(--secondary);
+        }
+
+        .section-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .card-header {
             background: var(--primary);
             color: white;
-        }
-
-        .hobby-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 1.5rem;
-        }
-
-        .hobby {
-            background: white;
-            padding: 0.8rem 1.5rem;
-            border-radius: 30px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            padding: 20px;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            border: 2px solid var(--light-gray);
+            gap: 15px;
         }
 
-        .hobby i {
+        .card-icon {
+            font-size: 1.8rem;
+        }
+
+        .card-header h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .card-content {
+            padding: 20px;
+            flex-grow: 1;
+        }
+
+        .card-content p {
+            margin-bottom: 10px;
+        }
+
+        .card-footer {
+            padding: 15px 20px;
+            background: var(--light);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tag {
+            background: var(--primary-light);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+        }
+
+        .comment-box {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .comment-box i {
+            color: var(--primary);
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .comment-box h3 {
+            margin-bottom: 15px;
             color: var(--primary);
         }
 
-        .quote {
-            font-style: italic;
-            background: rgba(255, 214, 102, 0.2);
-            padding: 1.5rem;
-            border-radius: 15px;
-            margin: 1.5rem 0;
-            position: relative;
-            border-left: 4px solid var(--accent);
+        .comment-box p {
+            margin-bottom: 25px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .quote::before {
-            content: """;
-            font-size: 4rem;
-            position: absolute;
-            top: -20px;
-            left: 10px;
-            color: var(--accent);
-            opacity: 0.3;
-            font-family: serif;
+        .comment-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 35px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .comment-btn:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
         footer {
-            background: linear-gradient(135deg, #2E2E2E, #1A1A1A);
+            background: rgba(0, 0, 0, 0.7);
             color: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin-top: 40px;
             text-align: center;
-            padding: 2.5rem 1rem;
-            margin-top: 3rem;
-            border-radius: 30px 30px 0 0;
         }
 
         .footer-content {
-            max-width: 1200px;
+            max-width: 800px;
             margin: 0 auto;
         }
 
         .footer-logo {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--accent);
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: var(--primary-light);
+        }
+
+        .footer-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: white;
         }
 
         .footer-links {
             display: flex;
             justify-content: center;
-            gap: 1.5rem;
-            margin: 1.5rem 0;
             flex-wrap: wrap;
+            gap: 20px;
+            margin: 25px 0;
         }
 
         .footer-links a {
-            color: rgba(255, 255, 255, 0.8);
+            color: var(--light);
             text-decoration: none;
-            transition: var(--transition);
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 8px;
+            transition: var(--transition);
         }
 
         .footer-links a:hover {
-            color: var(--accent);
+            color: var(--primary-light);
+            transform: translateY(-3px);
         }
 
         .copyright {
-            margin-top: 1.5rem;
-            color: rgba(255, 255, 255, 0.6);
+            margin-top: 20px;
+            color: rgba(255, 255, 255, 0.7);
             font-size: 0.9rem;
         }
 
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-
         @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                text-align: center;
-                gap: 1.5rem;
-            }
-            
-            .logo-container {
-                justify-content: center;
+            .title-container h1 {
+                font-size: 1.8rem;
             }
             
             .section-content {
                 grid-template-columns: 1fr;
             }
             
-            .decoration.fox, .decoration.gamepad {
+            .decoration.fox,
+            .decoration.gamepad {
                 display: none;
+            }
+            
+            .logo-container {
+                flex-direction: column;
             }
         }
     </style>
 </head>
 <body>
-    <div class="decoration fox"></div>
-    <div class="decoration gamepad"></div>
+    <div class="decoration fox"><i class="fas fa-paw"></i></div>
+    <div class="decoration gamepad"><i class="fas fa-gamepad"></i></div>
     
     <header>
         <div class="header-content">
@@ -476,20 +467,21 @@
                     <img src="https://avatars.githubusercontent.com/u/203219103?v=4" alt="Fox Avatar">
                 </div>
                 <div class="title-container">
-                    <h1> · Skywind Fox · 天风家的小白狐 · </h1>
-                    <p>· 玩家 | java开发者 | libGDX | Minecraft 地图设计 / 指令包 | Anime | 音游初级谱师 | 几何冲刺Creator · </p>
+                    <h1>Skywind Fox · 天风家的小白狐</h1>
+                    <p>玩家 | Java开发者 | LibGDX | Minecraft地图设计 | 音游谱师 | 几何冲刺Creator</p>
                 </div>
             </div>
             
             <div class="intro-banner">
-                <p><i class="fas fa-gamepad"></i> 欢迎来到我的游戏小窝！一起探索游戏的奇妙世界吧！</p>
+                <i class="fas fa-gamepad"></i>
+                <p>欢迎来到我的游戏空间！一起探索游戏的奇妙世界吧！</p>
             </div>
         </div>
     </header>
     
     <div class="container">
         <section class="section about-section">
-            <h2 class="section-title"> · 关于我 · About Me · </h2>
+            <h2 class="section-title">关于我</h2>
             <div class="avatar">
                 <img src="https://avatars.githubusercontent.com/u/203219103?v=4" alt="Skywind Fox">
             </div>
@@ -497,7 +489,7 @@
                 <p>嗨！我是 Skywind Fox，一个热爱游戏和开发的同好！这里是我的个人空间，分享我喜欢的游戏、开发项目以及一些游戏设计想法。</p>
                 
                 <div class="quote">
-                    <del>"游戏不只是娱乐，它们是连接人与人、创造无限可能的桥梁。"</del>
+                    "游戏不只是娱乐，它们是连接人与人、创造无限可能的桥梁。"
                 </div>
                 
                 <p>白天我可能是开发者，但晚上我就是一个沉浸在游戏世界里的玩家。喜欢探索各种类型的游戏，特别是那些有独特创意和艺术风格的作品。</p>
@@ -505,7 +497,7 @@
                 <div class="hobby-list">
                     <div class="hobby"><i class="fas fa-code"></i> 独立开发</div>
                     <div class="hobby"><i class="fas fa-paint-brush"></i> 像素艺术</div>
-                    <div class="hobby"><i class="fas fa-headphones"></i> <del> 游戏原声 </del> </div>
+                    <div class="hobby"><i class="fas fa-headphones"></i> 游戏原声</div>
                     <div class="hobby"><i class="fas fa-book"></i> 游戏设计</div>
                     <div class="hobby"><i class="fas fa-coffee"></i> 茶水爱好者</div>
                 </div>
@@ -513,11 +505,10 @@
                 <div class="social-links">
                     <a href="https://steamcommunity.com/profiles/76561198362906353/" title="Steam"><i class="fab fa-steam"></i></a>
                     <a href="#" title="Discord"><i class="fab fa-discord"></i></a>
-                    <a href="#" title="Discord_unused"><i class="fab fa-discord"></i></a>
                     <a href="https://github.com/Skywindfox" title="GitHub"><i class="fab fa-github"></i></a>
                     <a href="https://x.com/home" title="Twitter"><i class="fab fa-twitter"></i></a>
                     <a href="https://www.youtube.com/@skywind_fox4153" title="YouTube"><i class="fab fa-youtube"></i></a>
-                    <a href="#" title="Bilibili"><i class="Bilibili"></i></a>
+                    <a href="#" title="Bilibili"><i class="fab fa-bilibili"></i></a>
                 </div>
             </div>
         </section>
@@ -525,7 +516,7 @@
         <section class="section">
             <h2 class="section-title">我喜欢的游戏</h2>
             <div class="section-content">
-                <div class="card games">
+                <div class="card">
                     <div class="card-header">
                         <div class="card-icon">
                             <i class="fas fa-cube"></i>
@@ -538,10 +529,11 @@
                     <div class="card-footer">
                         <span class="tag">沙盒</span>
                         <span class="tag">创造</span>
+                        <span class="tag">开放世界</span>
                     </div>
                 </div>
                 
-                <div class="card games">
+                <div class="card">
                     <div class="card-header">
                         <div class="card-icon">
                             <i class="fas fa-water"></i>
@@ -554,10 +546,11 @@
                     <div class="card-footer">
                         <span class="tag">生存</span>
                         <span class="tag">冒险</span>
+                        <span class="tag">探索</span>
                     </div>
                 </div>
                 
-                <div class="card games">
+                <div class="card">
                     <div class="card-header">
                         <div class="card-icon">
                             <i class="fas fa-blender"></i>
@@ -570,6 +563,7 @@
                     <div class="card-footer">
                         <span class="tag">模拟</span>
                         <span class="tag">休闲</span>
+                        <span class="tag">经营</span>
                     </div>
                 </div>
             </div>
@@ -578,7 +572,7 @@
         <section class="section">
             <h2 class="section-title">开发项目</h2>
             <div class="section-content">
-                <div class="card projects">
+                <div class="card">
                     <div class="card-header">
                         <div class="card-icon">
                             <i class="fas fa-rocket"></i>
@@ -586,8 +580,8 @@
                         <h3>DreamAchieve</h3>
                     </div>
                     <div class="card-content">
-                        <p>· 一款基于 LibGDX 开发的弹幕射击游戏，拥有独特的游戏机制和精美的视觉效果。目前正在重写中，以提升游戏体验。</p>
-                        <p>· 目前版本： DreamAchieve Dev 1.1.0 </p>
+                        <p>一款基于 LibGDX 开发的弹幕射击游戏，拥有独特的游戏机制和精美的视觉效果。目前正在重写中，以提升游戏体验。</p>
+                        <p><strong>当前版本：</strong> DreamAchieve Dev 1.1.0</p>
                     </div>
                     <div class="card-footer">
                         <span class="tag">LibGDX</span>
@@ -596,55 +590,52 @@
                     </div>
                 </div>
                 
-                <div class="card projects">
+                <div class="card">
                     <div class="card-header">
                         <div class="card-icon">
                             <i class="fas fa-dragon"></i>
                         </div>
-                        <h3>像素冒险者</h3>
+                        <h3>Minecraft 地图项目</h3>
                     </div>
                     <div class="card-content">
-                        <p>· 一个复古风格的2D平台游戏，玩家扮演小狐狸在魔法森林中冒险，收集物品并解开谜题。</p>
-                        <p>· 早期作品 · 现已停止开发</p>
+                        <p>设计并开发具有独特剧情和机制的 Minecraft 地图，结合命令方块和自定义资源包创造沉浸式体验。</p>
+                        <p><strong>状态：</strong> 构思阶段</p>
                     </div>
                     <div class="card-footer">
-                        <span class="tag">Unity</span>
-                        <span class="tag">Blender</span>
-                        <span class="tag">像素艺术</span>
-                        <span class="tag">原型</span>
+                        <span class="tag">Minecraft</span>
+                        <span class="tag">地图设计</span>
                     </div>
                 </div>
                 
-                <div class="card projects">
+                <div class="card">
                     <div class="card-header">
                         <div class="card-icon">
                             <i class="fas fa-robot"></i>
                         </div>
-                        <h3>QQ机器人</h3>
+                        <h3>游戏工具集</h3>
                     </div>
                     <div class="card-content">
-                        <p>· 为同好社区开发的QQ机器人，提供游戏资讯、社区活动和趣味互动功能。</p>
-                        <p>· 已被 PillTek 收编 ， 目前已退出开发组</p>
+                        <p>开发一系列提高游戏开发效率的工具，包括资源处理、关卡编辑和性能分析工具。</p>
+                        <p><strong>状态：</strong> 部分功能已完成</p>
                     </div>
                     <div class="card-footer">
+                        <span class="tag">Java</span>
                         <span class="tag">Python</span>
-                        <span class="tag">已完成</span>
+                        <span class="tag">工具开发</span>
                     </div>
                 </div>
             </div>
         </section>
         
         <section class="section">
-            <h2 class="section-title">同好留言板</h2>
-            <div class="section-content">
-                <div style="background: rgba(255, 255, 255, 0.7); padding: 1.5rem; border-radius: 15px; text-align: center;">
-                    <p><i class="fas fa-comments" style="color: var(--primary); font-size: 2rem; margin-bottom: 1rem;"></i></p>
-                    <h3 style="margin-bottom: 1rem;">欢迎留言交流！</h3>
-                    <p style="margin-bottom: 1.5rem;">分享你的游戏心得、开发经验或任何有趣的想法！</p>
-                    <button style="background: var(--primary); color: white; border: none; padding: 0.8rem 2rem; border-radius: 30px; font-weight: 600; cursor: pointer; transition: var(--transition);">
-                        <del>我要留言</del> 不能留言！ 这是静态网页！ <i class="fas fa-arrow-right"></i>
-                    </button>
-                </div>
+            <h2 class="section-title">同好交流区</h2>
+            <div class="comment-box">
+                <i class="fas fa-comments"></i>
+                <h3>欢迎交流游戏心得！</h3>
+                <p>分享你的游戏体验、开发经验或任何有趣的想法！虽然这是静态页面，但你可以在社交媒体上找到我进行交流。</p>
+                <button class="comment-btn">
+                    通过社交媒体联系 <i class="fas fa-arrow-right"></i>
+                </button>
             </div>
         </section>
     </div>
@@ -654,13 +645,13 @@
             <div class="footer-logo">
                 <i class="fas fa-fox"></i>
             </div>
-            <h3>Skywind Fox 的游戏小窝</h3>
+            <h3>Skywind Fox 的游戏空间</h3>
             <div class="footer-links">
                 <a href="#"><i class="fas fa-home"></i> 首页</a>
-                <a href="#"><i class="fas fa-gamepad"></i> <del>游戏收藏</del></a>
-                <a href="#"><i class="fas fa-code"></i> <del>开发项目</del></a>
-                <a href="#"><i class="fas fa-book"></i> <del>开发日志</del></a>
-                <a href="#"><i class="fas fa-users"></i> <del>同好社区</del></a>
+                <a href="#"><i class="fas fa-gamepad"></i> 游戏收藏</a>
+                <a href="#"><i class="fas fa-code"></i> 开发项目</a>
+                <a href="#"><i class="fas fa-book"></i> 开发日志</a>
+                <a href="#"><i class="fas fa-users"></i> 同好社区</a>
             </div>
             <div class="copyright">
                 © 2025 Skywind Fox | 玩家 | 开发者 | 游戏爱好者
