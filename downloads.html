@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>· Skywind Fox 的资源下载 ·</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #7c6edb;
+      --primary-light: #a59eff;
+      --secondary: #64c4c1;
+      --accent: #ff9e9e;
+      --dark: #2d3436;
+      --light: #f8f9fa;
+      --card-bg: rgba(255, 255, 255, 0.92);
+      --transition: all 0.3s ease;
+      --shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      --border-radius: 16px;
+      --text-color: #4a4a68;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: linear-gradient(135deg, #f0f4ff 0%, #f9f7ff 100%);
+      color: var(--text-color);
+      line-height: 1.6;
+      min-height: 100vh;
+      padding: 20px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Decorative elements */
+    .decoration {
+      position: absolute;
+      z-index: -1;
+      opacity: 0.1;
+      pointer-events: none;
+    }
+
+    .decoration.fox {
+      top: 10%;
+      left: 5%;
+      font-size: 15rem;
+      color: var(--primary);
+    }
+
+    .decoration.gamepad {
+      bottom: 15%;
+      right: 7%;
+      font-size: 12rem;
+      color: var(--primary);
+      transform: rotate(20deg);
+    }
+
+    .decoration.paw {
+      top: 25%;
+      right: 10%;
+      font-size: 8rem;
+      color: var(--accent);
+      transform: rotate(-15deg);
+    }
+
+    .decoration.star {
+      top: 70%;
+      left: 8%;
+      font-size: 6rem;
+      color: var(--secondary);
+      transform: rotate(25deg);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      border-radius: var(--border-radius);
+      padding: 25px;
+      margin-bottom: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header-content::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      border-radius: 2px;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .logo {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 4px solid var(--primary-light);
+      box-shadow: var(--shadow);
+      background: white;
+      transition: var(--transition);
+    }
+
+    .logo:hover {
+      transform: rotate(5deg);
+      border-color: var(--secondary);
+    }
+
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .title-container {
+      text-align: center;
+      max-width: 600px;
+    }
+
+    .title-container h1 {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+      color: var(--dark);
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 700;
+    }
+
+    .title-container p {
+      font-size: 1.1rem;
+      color: var(--text-color);
+      font-weight: 500;
+    }
+
+    .intro-banner {
+      background: rgba(124, 110, 219, 0.1);
+      color: var(--primary);
+      padding: 14px 30px;
+      border-radius: 50px;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      justify-content: center;
+      max-width: fit-content;
+      margin: 0 auto;
+      border: 2px dashed var(--primary-light);
+      transition: var(--transition);
+    }
+
+    .intro-banner:hover {
+      background: rgba(124, 110, 219, 0.15);
+      transform: translateY(-3px);
+    }
+
+    .section {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 35px;
+      margin-bottom: 30px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--primary), var(--secondary));
+      border-radius: 2px 0 0 2px;
+    }
+
+    .section-title {
+      font-family: 'Quicksand', sans-serif;
+      color: var(--primary);
+      margin-bottom: 30px;
+      font-size: 1.8rem;
+      position: relative;
+      padding-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: var(--secondary);
+      border-radius: 2px;
+    }
+
+    .section-title i {
+      color: var(--secondary);
+      font-size: 1.4rem;
+    }
+
+    /* 资源下载区域样式 */
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 25px;
+      margin-top: 20px;
+    }
+
+    .resource-card {
+      background: white;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      transition: var(--transition);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      border: 1px solid rgba(124, 110, 219, 0.1);
+    }
+
+    .resource-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    }
+
+    .resource-header {
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .resource-icon {
+      font-size: 1.8rem;
+    }
+
+    .resource-content {
+      padding: 25px;
+    }
+
+    .resource-info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid rgba(124, 110, 219, 0.1);
+    }
+
+    .resource-info div {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .resource-info strong {
+      color: var(--primary);
+      font-size: 0.9rem;
+      margin-bottom: 5px;
+    }
+
+    .resource-description {
+      margin-bottom: 20px;
+      line-height: 1.7;
+    }
+
+    .download-link {
+      display: block;
+      background: rgba(124, 110, 219, 0.1);
+      color: var(--primary);
+      padding: 12px 20px;
+      border-radius: 8px;
+      text-align: center;
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .download-link:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    .file-size {
+      display: inline-block;
+      background: rgba(124, 110, 219, 0.1);
+      color: var(--primary);
+      padding: 3px 10px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      margin-top: 8px;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--primary);
+      text-decoration: none;
+      margin-bottom: 20px;
+      transition: var(--transition);
+    }
+
+    .back-btn:hover {
+      transform: translateX(-5px);
+    }
+
+    footer {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      border-radius: var(--border-radius);
+      padding: 40px 20px;
+      margin-top: 40px;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      box-shadow: var(--shadow);
+    }
+
+    .footer-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .footer-logo {
+      font-size: 3rem;
+      margin-bottom: 15px;
+      color: var(--primary);
+      transition: var(--transition);
+    }
+
+    .footer-logo:hover {
+      transform: rotate(10deg) scale(1.1);
+      color: var(--secondary);
+    }
+
+    .footer-content h3 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      color: var(--dark);
+      font-family: 'Quicksand', sans-serif;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 25px;
+      margin: 30px 0;
+    }
+
+    .footer-links a {
+      color: var(--primary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition);
+      font-weight: 500;
+    }
+
+    .footer-links a:hover {
+      color: var(--secondary);
+      transform: translateY(-3px);
+    }
+
+    .copyright {
+      margin-top: 25px;
+      color: var(--text-color);
+      font-size: 0.95rem;
+      padding-top: 20px;
+      border-top: 1px solid rgba(124, 110, 219, 0.1);
+    }
+
+    @media (max-width: 768px) {
+      .title-container h1 {
+        font-size: 1.8rem;
+      }
+      
+      .decoration {
+        display: none;
+      }
+      
+      .logo-container {
+        flex-direction: column;
+      }
+      
+      .section {
+        padding: 25px 20px;
+      }
+      
+      .resource-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="decoration fox"><i class="fas fa-paw"></i></div>
+  <div class="decoration gamepad"><i class="fas fa-gamepad"></i></div>
+  <div class="decoration paw"><i class="fas fa-paw"></i></div>
+  <div class="decoration star"><i class="fas fa-star"></i></div>
+
+  <header>
+    <div class="header-content">
+      <div class="logo-container">
+        <div class="logo">
+          <img src="https://avatars.githubusercontent.com/u/203219103?v=4" alt="Fox Avatar" />
+        </div>
+        <div class="title-container">
+          <h1>Skywind Fox · 资源下载</h1>
+          <p>游戏素材 | 开发工具 | 创作资源</p>
+        </div>
+      </div>
+      <div class="intro-banner">
+        <i class="fas fa-download"></i>
+        <p>下载我创作的游戏素材、开发工具和其他资源</p>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <a href="index.html" class="back-btn">
+      <i class="fas fa-arrow-left"></i> 返回主页
+    </a>
+    
+    <section class="section">
+      <h2 class="section-title"><i class="fas fa-download"></i> 资源下载</h2>
+
+      <p>这里提供我创作的各种资源下载，包括游戏素材、开发工具和音游谱面等。</p>
+      <p>（不保证具体时效性）</p>
+      
+      <p><h3> · 下载页更新日期： 2025.8.2 GMT+8 ·</h3></p>
+      
+      <div class="resource-grid">
+        <div class="resource-card">
+          <div class="resource-header">
+            <div class="resource-icon"><i class="fas fa-file-code"></i></div>
+            <h3>DreamAchieve 开发套件</h3>
+          </div>
+          <div class="resource-content">
+            <div class="resource-info">
+              <div>
+                <strong>版本</strong>
+                <span> DEV 1.1.0</span>
+              </div>
+              <div>
+                <strong>更新日期</strong>
+                <span>2025-08-2</span>
+              </div>
+            </div>
+            <div class="resource-description">
+              <p> · 包含游戏源代码、资源文件和开发文档，适合Java开发者学习使用。</p>
+              <p> · DreamAchieve 相关开发的内容现已转向内部处理 ·</p>
+              <p> · 本体资源获取请稍等Relese版 ·</p>
+            </div>
+            <a href="#" class="download-link">
+              <i class="fas fa-download"></i> 链接已失效
+              <span class="file-size"> 19.2 MB</span>
+            </a>
+          </div>
+        </div>
+        
+        <div class="resource-card">
+          <div class="resource-header">
+            <div class="resource-icon"><i class="fas fa-cubes"></i></div>
+            <h3>DreamAchive素材包</h3>
+          </div>
+          <div class="resource-content">
+            <div class="resource-info">
+              <div>
+                <strong>版本</strong>
+                <span>1.0</span>
+              </div>
+              <div>
+                <strong>更新日期</strong>
+                <span>2025-06-22</span>
+              </div>
+            </div>
+            <div class="resource-description">
+              <p> · 包含200+个像素风格的UI元素、角色素材和场景物件，可用于游戏开发。</p>
+              <p> · 素材作者 @幻想黑块 · </p>
+            </div>
+            <a href="#" class="download-link">
+              <i class="fas fa-download"></i> 链接已失效
+              <span class="file-size">56 MB</span>
+            </a>
+          </div>
+        </div>
+        
+        <div class="resource-card">
+          <div class="resource-header">
+            <div class="resource-icon"><i class="fas fa-map"></i></div>
+            <h3>Minecraft 地图</h3>
+          </div>
+          <div class="resource-content">
+            <div class="resource-info">
+              <div>
+                <strong>版本</strong>
+                <span>DEV 0.0.1</span>
+              </div>
+              <div>
+                <strong>更新日期</strong>
+                <span>2025-08-2</span>
+              </div>
+            </div>
+            <div class="resource-description">
+              <p> · 没开发完呢</p>
+            </div>
+            <a href="#" class="download-link">
+              <i class="fas fa-download"></i> 链接已失效
+              <span class="file-size">78 MB</span>
+            </a>
+          </div>
+        </div>
+        
+      </div>
+    </section>
+    
+    <section class="section">
+      <h2 class="section-title"><i class="fas fa-info-circle"></i> 下载说明</h2>
+      <div class="about-content">
+        <p>所有资源均为免费下载，可用于个人项目和非商业用途。</p>
+        <p>如需在商业项目中使用，请通过邮件联系我获取授权：<h2>skywind_fox@qq.com</h2>  </p>
+        <div class="quote">"分享让创作更有价值，期待看到你使用这些资源创造的作品！"</div>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-logo"><i class="fas fa-fox"></i></div>
+      <h3> · Skywind Fox 的资源空间 · </h3>
+      <div class="footer-links">
+        <a href="index.html"><i class="fas fa-home"></i> 返回主页</a>
+        <a href="#"><i class="fas fa-envelope"></i> 联系我</a>
+      </div>
+      <div class="copyright">
+        · © 2025 Skywind Fox | 资源免费下载 | 保留所有权利 ·
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

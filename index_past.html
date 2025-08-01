@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skywind Fox 的游戏小窝</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF6B6B;
+            --secondary: #4ECDC4;
+            --accent: #FFD166;
+            --background: #F7F9FC;
+            --card: #FFFFFF;
+            --text: #2E2E2E;
+            --light-gray: #E8E8E8;
+            --success: #06D6A0;
+            --game-card: #FFE9EC;
+            --project-card: #E0F7FA;
+            --tag: #FF9E6D;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--background);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(255, 214, 102, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(78, 205, 196, 0.1) 0%, transparent 20%);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* 装饰元素 */
+        .decoration {
+            position: absolute;
+            z-index: -1;
+        }
+
+        .decoration.fox {
+            top: 100px;
+            right: 5%;
+            width: 150px;
+            height: 150px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23FFD166" d="M50,15 C60,5 80,10 85,25 C90,40 85,55 75,60 C85,70 90,85 80,95 C70,85 50,90 40,80 C30,90 10,85 15,70 C5,60 10,45 20,40 C10,35 5,20 15,10 C25,20 40,25 50,15 Z"/></svg>');
+            opacity: 0.15;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .decoration.gamepad {
+            bottom: 20%;
+            left: 5%;
+            width: 100px;
+            height: 100px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="%234ECDC4" x="20" y="30" width="60" height="40" rx="10"/><circle fill="%232E2E2E" cx="35" cy="40" r="5"/><circle fill="%232E2E2E" cx="65" cy="40" r="5"/><rect fill="%232E2E2E" x="45" cy="55" width="10" height="15"/></svg>');
+            opacity: 0.15;
+            animation: float 8s ease-in-out infinite 1s;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), #FF8E8E);
+            color: white;
+            padding: 1.5rem 2rem;
+            position: relative;
+            overflow: hidden;
+            border-radius: 0 0 30px 30px;
+            box-shadow: 0 5px 20px rgba(255, 107, 107, 0.3);
+            margin-bottom: 2rem;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            flex-wrap: wrap;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            border: 3px solid var(--accent);
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .title-container h1 {
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
+            font-size: 2.2rem;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            margin-bottom: 0.3rem;
+        }
+
+        .title-container p {
+            font-weight: 600;
+            font-size: 1.1rem;
+            opacity: 0.95;
+            letter-spacing: 0.5px;
+        }
+
+        .intro-banner {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 1rem 1.5rem;
+            margin-top: 1rem;
+            width: 100%;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .intro-banner p {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            background: var(--card);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            margin-bottom: 2.5rem;
+            transition: var(--transition);
+            overflow: hidden;
+            position: relative;
+            border: 1px solid var(--light-gray);
+        }
+
+        .section-title {
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+            padding-left: 1rem;
+        }
+
+        .section-title::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 80%;
+            background: var(--primary);
+            border-radius: 3px;
+        }
+
+        .section-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: var(--transition);
+            position: relative;
+            border: 2px solid var(--light-gray);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary);
+        }
+
+        .card.games {
+            background: var(--game-card);
+            border-top: 5px solid var(--primary);
+        }
+
+        .card.projects {
+            background: var(--project-card);
+            border-top: 5px solid var(--secondary);
+        }
+
+        .card-header {
+            padding: 1.2rem 1.2rem 0.8rem;
+            position: relative;
+        }
+
+        .card-icon {
+            position: absolute;
+            top: -20px;
+            right: 15px;
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            z-index: 2;
+            border: 2px solid var(--accent);
+        }
+
+        .card-icon i {
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        .card-content {
+            padding: 0 1.2rem 1.2rem;
+            flex-grow: 1;
+        }
+
+        .card p {
+            color: var(--text);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .card-footer {
+            padding: 0.8rem 1.2rem;
+            background: rgba(255, 255, 255, 0.5);
+            border-top: 1px solid var(--light-gray);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .tag {
+            display: inline-block;
+            background: var(--tag);
+            color: white;
+            font-size: 0.8rem;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .about-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid var(--accent);
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about-content {
+            max-width: 800px;
+        }
+
+        .about-content p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: white;
+            color: var(--primary);
+            border-radius: 50%;
+            font-size: 1.4rem;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border: 2px solid var(--accent);
+        }
+
+        .social-links a:hover {
+            transform: translateY(-5px);
+            background: var(--primary);
+            color: white;
+        }
+
+        .hobby-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+
+        .hobby {
+            background: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: 2px solid var(--light-gray);
+        }
+
+        .hobby i {
+            color: var(--primary);
+        }
+
+        .quote {
+            font-style: italic;
+            background: rgba(255, 214, 102, 0.2);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 1.5rem 0;
+            position: relative;
+            border-left: 4px solid var(--accent);
+        }
+
+        .quote::before {
+            content: """;
+            font-size: 4rem;
+            position: absolute;
+            top: -20px;
+            left: 10px;
+            color: var(--accent);
+            opacity: 0.3;
+            font-family: serif;
+        }
+
+        footer {
+            background: linear-gradient(135deg, #2E2E2E, #1A1A1A);
+            color: white;
+            text-align: center;
+            padding: 2.5rem 1rem;
+            margin-top: 3rem;
+            border-radius: 30px 30px 0 0;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .copyright {
+            margin-top: 1.5rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 1.5rem;
+            }
+            
+            .logo-container {
+                justify-content: center;
+            }
+            
+            .section-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .decoration.fox, .decoration.gamepad {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="decoration fox"></div>
+    <div class="decoration gamepad"></div>
+    
+    <header>
+        <div class="header-content">
+            <div class="logo-container">
+                <div class="logo">
+                    <img src="https://avatars.githubusercontent.com/u/203219103?v=4" alt="Fox Avatar">
+                </div>
+                <div class="title-container">
+                    <h1> · Skywind Fox · 天风家的小白狐 · </h1>
+                    <p>· 玩家 | java开发者 | libGDX | Minecraft 地图设计 / 指令包 | Anime | 音游初级谱师 | 几何冲刺Creator · </p>
+                </div>
+            </div>
+            
+            <div class="intro-banner">
+                <p><i class="fas fa-gamepad"></i> 欢迎来到我的游戏小窝！一起探索游戏的奇妙世界吧！</p>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <section class="section about-section">
+            <h2 class="section-title"> · 关于我 · About Me · </h2>
+            <div class="avatar">
+                <img src="https://avatars.githubusercontent.com/u/203219103?v=4" alt="Skywind Fox">
+            </div>
+            <div class="about-content">
+                <p>嗨！我是 Skywind Fox，一个热爱游戏和开发的同好！这里是我的个人空间，分享我喜欢的游戏、开发项目以及一些游戏设计想法。</p>
+                
+                <div class="quote">
+                    <del>"游戏不只是娱乐，它们是连接人与人、创造无限可能的桥梁。"</del>
+                </div>
+                
+                <p>白天我可能是开发者，但晚上我就是一个沉浸在游戏世界里的玩家。喜欢探索各种类型的游戏，特别是那些有独特创意和艺术风格的作品。</p>
+                
+                <div class="hobby-list">
+                    <div class="hobby"><i class="fas fa-code"></i> 独立开发</div>
+                    <div class="hobby"><i class="fas fa-paint-brush"></i> 像素艺术</div>
+                    <div class="hobby"><i class="fas fa-headphones"></i> <del> 游戏原声 </del> </div>
+                    <div class="hobby"><i class="fas fa-book"></i> 游戏设计</div>
+                    <div class="hobby"><i class="fas fa-coffee"></i> 茶水爱好者</div>
+                </div>
+                
+                <div class="social-links">
+                    <a href="https://steamcommunity.com/profiles/76561198362906353/" title="Steam"><i class="fab fa-steam"></i></a>
+                    <a href="#" title="Discord"><i class="fab fa-discord"></i></a>
+                    <a href="#" title="Discord_unused"><i class="fab fa-discord"></i></a>
+                    <a href="https://github.com/Skywindfox" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://x.com/home" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.youtube.com/@skywind_fox4153" title="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="#" title="Bilibili"><i class="Bilibili"></i></a>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">我喜欢的游戏</h2>
+            <div class="section-content">
+                <div class="card games">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-cube"></i>
+                        </div>
+                        <h3>Minecraft</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>构建我的世界，探索无尽的可能！在这个沙盒游戏中，你可以创造任何你能想象到的东西。</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="tag">沙盒</span>
+                        <span class="tag">创造</span>
+                    </div>
+                </div>
+                
+                <div class="card games">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-water"></i>
+                        </div>
+                        <h3>Subnautica</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>沉浸在神秘的水下世界，探索深海的奥秘。在充满未知的海洋星球上生存并揭开它的秘密。</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="tag">生存</span>
+                        <span class="tag">冒险</span>
+                    </div>
+                </div>
+                
+                <div class="card games">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-blender"></i>
+                        </div>
+                        <h3>Slime Rancher</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>收集可爱的史莱姆，创造属于自己的牧场。在这个色彩缤纷的世界里经营你的牧场生意。</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="tag">模拟</span>
+                        <span class="tag">休闲</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">开发项目</h2>
+            <div class="section-content">
+                <div class="card projects">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3>DreamAchieve</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>· 一款基于 LibGDX 开发的弹幕射击游戏，拥有独特的游戏机制和精美的视觉效果。目前正在重写中，以提升游戏体验。</p>
+                        <p>· 目前版本： DreamAchieve Dev 1.1.0 </p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="tag">LibGDX</span>
+                        <span class="tag">弹幕系STG</span>
+                        <span class="tag">开发中</span>
+                    </div>
+                </div>
+                
+                <div class="card projects">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-dragon"></i>
+                        </div>
+                        <h3>像素冒险者</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>· 一个复古风格的2D平台游戏，玩家扮演小狐狸在魔法森林中冒险，收集物品并解开谜题。</p>
+                        <p>· 早期作品 · 现已停止开发</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="tag">Unity</span>
+                        <span class="tag">Blender</span>
+                        <span class="tag">像素艺术</span>
+                        <span class="tag">原型</span>
+                    </div>
+                </div>
+                
+                <div class="card projects">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3>QQ机器人</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>· 为同好社区开发的QQ机器人，提供游戏资讯、社区活动和趣味互动功能。</p>
+                        <p>· 已被 PillTek 收编 ， 目前已退出开发组</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="tag">Python</span>
+                        <span class="tag">已完成</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">同好留言板</h2>
+            <div class="section-content">
+                <div style="background: rgba(255, 255, 255, 0.7); padding: 1.5rem; border-radius: 15px; text-align: center;">
+                    <p><i class="fas fa-comments" style="color: var(--primary); font-size: 2rem; margin-bottom: 1rem;"></i></p>
+                    <h3 style="margin-bottom: 1rem;">欢迎留言交流！</h3>
+                    <p style="margin-bottom: 1.5rem;">分享你的游戏心得、开发经验或任何有趣的想法！</p>
+                    <button style="background: var(--primary); color: white; border: none; padding: 0.8rem 2rem; border-radius: 30px; font-weight: 600; cursor: pointer; transition: var(--transition);">
+                        <del>我要留言</del> 不能留言！ 这是静态网页！ <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <i class="fas fa-fox"></i>
+            </div>
+            <h3>Skywind Fox 的游戏小窝</h3>
+            <div class="footer-links">
+                <a href="#"><i class="fas fa-home"></i> 首页</a>
+                <a href="#"><i class="fas fa-gamepad"></i> <del>游戏收藏</del></a>
+                <a href="#"><i class="fas fa-code"></i> <del>开发项目</del></a>
+                <a href="#"><i class="fas fa-book"></i> <del>开发日志</del></a>
+                <a href="#"><i class="fas fa-users"></i> <del>同好社区</del></a>
+            </div>
+            <div class="copyright">
+                © 2025 Skywind Fox | 玩家 | 开发者 | 游戏爱好者
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
