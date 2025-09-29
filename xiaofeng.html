@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>· 测试页 孙肖枫 ·</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #f8b5d6;
+      --primary-light: #fce4ec;
+      --secondary: #f48fb1;
+      --accent: #ff80ab;
+      --dark: #4a4a68;
+      --light: #fdf6f9;
+      --card-bg: rgba(255, 255, 255, 0.92);
+      --transition: all 0.3s ease;
+      --shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      --border-radius: 16px;
+      --text-color: #4a4a68;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: linear-gradient(135deg, #fff5f9 0%, #fef0f7 100%);
+      color: var(--text-color);
+      line-height: 1.6;
+      min-height: 100vh;
+      padding: 20px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    .decoration {
+      position: absolute;
+      z-index: -1;
+      opacity: 0.1;
+      pointer-events: none;
+    }
+
+    .decoration.fox {
+      top: 10%;
+      left: 5%;
+      font-size: 15rem;
+      color: var(--primary);
+    }
+
+    .decoration.gamepad {
+      bottom: 15%;
+      right: 7%;
+      font-size: 12rem;
+      color: var(--primary);
+      transform: rotate(20deg);
+    }
+
+    .decoration.paw {
+      top: 25%;
+      right: 10%;
+      font-size: 8rem;
+      color: var(--accent);
+      transform: rotate(-15deg);
+    }
+
+    .decoration.star {
+      top: 70%;
+      left: 8%;
+      font-size: 6rem;
+      color: var(--secondary);
+      transform: rotate(25deg);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      border-radius: var(--border-radius);
+      padding: 25px;
+      margin-bottom: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header-content::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      border-radius: 2px;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .logo {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 4px solid var(--primary-light);
+      box-shadow: var(--shadow);
+      background: white;
+      transition: var(--transition);
+    }
+
+    .logo:hover {
+      transform: rotate(5deg);
+      border-color: var(--secondary);
+    }
+
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .title-container {
+      text-align: center;
+      max-width: 600px;
+    }
+
+    .title-container h1 {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+      color: var(--dark);
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 700;
+    }
+
+    .title-container p {
+      font-size: 1.1rem;
+      color: var(--text-color);
+      font-weight: 500;
+    }
+
+    .intro-banner {
+      background: rgba(248, 181, 214, 0.1);
+      color: var(--primary);
+      padding: 14px 30px;
+      border-radius: 50px;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      justify-content: center;
+      max-width: fit-content;
+      margin: 0 auto;
+      border: 2px dashed var(--primary-light);
+      transition: var(--transition);
+    }
+
+    .intro-banner:hover {
+      background: rgba(248, 181, 214, 0.15);
+      transform: translateY(-3px);
+    }
+
+    .section {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 35px;
+      margin-bottom: 30px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--primary), var(--secondary));
+      border-radius: 2px 0 0 2px;
+    }
+
+    .section-title {
+      font-family: 'Quicksand', sans-serif;
+      color: var(--primary);
+      margin-bottom: 30px;
+      font-size: 1.8rem;
+      position: relative;
+      padding-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: var(--secondary);
+      border-radius: 2px;
+    }
+
+    .section-title i {
+      color: var(--secondary);
+      font-size: 1.4rem;
+    }
+
+    .about-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .avatar {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 5px solid var(--primary-light);
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .avatar:hover {
+      transform: scale(1.05);
+      border-color: var(--accent);
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .about-content {
+      text-align: center;
+      max-width: 800px;
+    }
+
+    .about-content p {
+      margin-bottom: 20px;
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    .about-content strong {
+      color: var(--primary);
+    }
+
+    .quote {
+      font-style: italic;
+      padding: 20px;
+      margin: 25px 0;
+      background: rgba(248, 181, 214, 0.08);
+      border-radius: 12px;
+      border-left: 4px solid var(--accent);
+      font-size: 1.2rem;
+      position: relative;
+      color: var(--dark);
+    }
+
+    .quote::before {
+      content: '"';
+      position: absolute;
+      top: 10px;
+      left: 15px;
+      font-size: 3rem;
+      font-family: serif;
+      color: rgba(248, 181, 214, 0.2);
+    }
+
+    .hobby-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin: 30px 0;
+    }
+
+    .hobby {
+      background: white;
+      color: var(--primary);
+      padding: 12px 25px;
+      border-radius: 50px;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: var(--transition);
+      border: 1px solid var(--primary-light);
+      box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+    }
+
+    .hobby:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+      background: var(--primary);
+      color: white;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: white;
+      color: var(--primary);
+      font-size: 1.5rem;
+      transition: var(--transition);
+      text-decoration: none;
+      border: 1px solid var(--primary-light);
+      box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+    }
+
+    .social-links a:hover {
+      transform: translateY(-5px);
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    }
+
+    .game-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .game-item {
+      background: white;
+      padding: 15px 20px;
+      border-radius: 12px;
+      transition: var(--transition);
+      border: 1px solid rgba(248, 181, 214, 0.1);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .game-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(0,0,0,0.08);
+      border-color: var(--primary-light);
+    }
+
+    .game-item::before {
+      content: '🎮';
+      font-size: 1.2rem;
+    }
+
+    @media (max-width: 768px) {
+      .title-container h1 {
+        font-size: 1.8rem;
+      }
+      
+      .decoration {
+        display: none;
+      }
+      
+      .logo-container {
+        flex-direction: column;
+      }
+      
+      .section {
+        padding: 25px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="decoration fox"><i class="fas fa-paw"></i></div>
+  <div class="decoration gamepad"><i class="fas fa-gamepad"></i></div>
+  <div class="decoration paw"><i class="fas fa-paw"></i></div>
+  <div class="decoration star"><i class="fas fa-star"></i></div>
+
+  <div class="container">
+    <!-- 关于我 -->
+    <section class="section about-section">
+      <h2 class="section-title"><i class="fas fa-user"></i> 关于我</h2>
+      <div class="avatar">
+        <img src="https://avatars.githubusercontent.com/u/203219103?v=4" alt="孙肖枫" />
+      </div>
+      <div class="about-content">
+        <p>哈喽！我是 <strong>孙肖枫</strong>！</p>
+        <p>平时喜欢玩游戏，研究各种有趣的游戏机制。从竞技类到角色扮演类，只要游戏有意思，我都会尝试！</p>
+        <p>我玩的游戏类型很杂，基本只要有创意、有想法、画风对胃口，就会一头扎进去~</p>
+        
+        <div class="quote">"游戏是连接现实与想象的桥梁！"</div>
+
+        <div class="hobby-list">
+          <div class="hobby"><i class="fas fa-gamepad"></i> 游戏竞技</div>
+          <div class="hobby"><i class="fas fa-music"></i> 音乐欣赏</div>
+          <div class="hobby"><i class="fas fa-film"></i> 影视观赏</div>
+          <div class="hobby"><i class="fas fa-book"></i> 阅读小说</div>
+        </div>
+
+        <div class="social-links">
+          <a href="https://space.bilibili.com/628177723?spm_id_from=333.1387.follow.user_card.click" title="Bilibili"><i class="fab fa-bilibili"></i></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 喜欢的游戏 -->
+    <section class="section">
+      <h2 class="section-title"><i class="fas fa-heart"></i> 我喜欢的游戏</h2>
+      <div class="game-list">
+        <div class="game-item">CS2</div>
+        <div class="game-item">原神</div>
+        <div class="game-item">鸣潮</div>
+        <div class="game-item">解限机</div>
+        <div class="game-item">崩坏：星穹铁道</div>
+        <div class="game-item">王者荣耀</div>
+        <div class="game-item">双人成行</div>
+        <div class="game-item">和平精英</div>
+        <div class="game-item">只狼</div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
